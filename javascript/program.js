@@ -17,6 +17,18 @@ function move(rover, instructions) {
       } else if (c == 'B') {
 	rover.y += 1;
       }
+    } else if (rover.direction == 'E') {
+      if (c == 'F') {
+	rover.x += 1;
+      } else if (c == 'B') {
+	rover.x -= 1;
+      }
+    } else if (rover.direction == 'W') {
+      if (c == 'F') {
+	rover.x -= 1;
+      } else if (c == 'B') {
+	rover.x += 1;
+      }
     }
   });
 }
@@ -24,7 +36,7 @@ function move(rover, instructions) {
 var rover = {
   x: 0,
   y: 0,
-  direction: 'S',
+  direction: 'W',
   instructions: []
 };
 
