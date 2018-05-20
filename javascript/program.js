@@ -5,10 +5,18 @@ var _ = require('underscore');
 function move(rover, instructions) {
   rover.instructions = instructions.split('');
   _.each(rover.instructions, function(c) {
-    if (c == 'F' && rover.direction == 'N') {
-      rover.y += 1;
-    } else if (c == 'B' && rover.direction == 'N') {
-      rover.y -= 1;
+    if (rover.direction == 'N') {
+      if (c == 'F') {
+	rover.y += 1;
+      } else if (c == 'B') {
+	rover.y -= 1;
+      }
+    } else if (rover.direction == 'S') {
+      if (c == 'F') {
+	rover.y -= 1;
+      } else if (c == 'B') {
+	rover.y += 1;
+      }
     }
   });
 }
@@ -16,7 +24,7 @@ function move(rover, instructions) {
 var rover = {
   x: 0,
   y: 0,
-  direction: 'N',
+  direction: 'S',
   instructions: []
 };
 
