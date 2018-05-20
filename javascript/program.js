@@ -6,28 +6,20 @@ function move(rover, instructions) {
   rover.instructions = instructions.split('');
   rover.startingDirection = rover.direction;
 
-  _.each(rover.instructions, function(c) {
-    if (rover.direction == 'N') {
+  var movementDefinitions = {
+    N: { F: { y:  1, x:  0 },
+	 B: { y: -1, x:  0 } },
+    S: { F: { y: -1, x:  0 },
+	 B: { y:  1, x:  0 } },
+    E: { F: { y:  0, x:  1 },
+	 B: { y:  0, x: -1 } },
+    W: { F: { y:  0, x: -1 },
+	 B: { y:  0, x:  1 } }
+  };
 
-      if      (c == 'F') { rover.y +=  1; }
-      else if (c == 'B') { rover.y += -1; }
-
-    } else if (rover.direction == 'S') {
-
-      if      (c == 'F') { rover.y += -1; }
-      else if (c == 'B') { rover.y +=  1; }
-
-    } else if (rover.direction == 'E') {
-
-      if      (c == 'F') { rover.x +=  1; }
-      else if (c == 'B') { rover.x += -1; }
-
-    } else if (rover.direction == 'W') {
-
-      if      (c == 'F') { rover.x += -1; }
-      else if (c == 'B') { rover.x +=  1; }
-
-    }
+  _.each(rover.instructions, function(moveInstruction) {
+    rover.x += movementDefinitions[rover.direction][moveInstruction].x;
+    rover.y += movementDefinitions[rover.direction][moveInstruction].y;
   });
 }
 
